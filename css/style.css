@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --primary: #0d68ff;
   --body-color: #111111;
   --photo-color: #ffd23f;
   --paint-color: #ee4266;
@@ -18,6 +19,12 @@ a:link {
 body {
   background: var(--body-color);
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 2160px;
+  margin: 0 auto;
 }
 
 .logo {
@@ -26,16 +33,18 @@ body {
   font-size: 2rem;
 }
 
+.logo__dot {
+  color: #0d68ff;
+}
+
 .header {
-  min-height: 10vh;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  width: 80%;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem 4rem;
 }
 
 .line1,
@@ -48,7 +57,7 @@ body {
 }
 
 .slide {
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   width: 80%;
   display: flex;
@@ -58,11 +67,16 @@ body {
   background: var(--body-color);
 }
 
+.hero {
+  height: calc(100vh - 107px);
+}
+
 .hero__description {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-items: flex-start;
   flex: 1;
   flex-basis: 25rem;
   padding-left: 5rem;
@@ -73,6 +87,7 @@ body {
   position: relative;
   flex: 1;
   flex-basis: 25rem;
+  object-fit: contain;
 }
 
 .hero__img img {
@@ -130,7 +145,7 @@ body {
   -webkit-clip-path: circle(50px at 100% -10%);
 }
 
-.burger {
+#burger {
   cursor: pointer;
 }
 
@@ -165,12 +180,11 @@ body {
 .reveal__img,
 .reveal__text {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  width: 150%;
+  height: 150%;
+  top: -15%;
+  left: -15%;
   background: var(--body-color);
-  display: none;
 }
 
 .cursor {
@@ -179,6 +193,33 @@ body {
   border: 2px solid white;
   border-radius: 50%;
   position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out;
+  transition-property: background, transform;
+  transform-origin: 90% 90%;
 }
 
+.cursor__text {
+  display: block;
+  position: absolute;
+  font-size: .7rem;
+  font-weight: 500;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.scrollmagic-pin-spacer {
+  position: static !important;
+}
+
+.active-cursor-nav {
+  transform: scale(3);
+  background: #0d68ff;
+}
+
+.active-cursor-explore {
+  transform: scale(2);
+  background: #fff;
+}

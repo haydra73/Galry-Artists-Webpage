@@ -28,20 +28,20 @@
     <!-- Javascript -->
     <script defer src="js/scrollMagic.min.js"></script>
     <!-- Test Javascript -->
-    <script defer src="js/addIndicators.min.js"></script>
     <script defer src="js/gsap.min.js"></script>
+    <script defer src="js/addIndicators.min.js"></script>
+    <script defer src="js/animate.gsap.min.js"></script>
     <script defer src="js/script.js"></script>
-
   </head>
   <body>
     <!-- Header -->
-    <header class="header">
-      <div class="logo">
+    <header class="header container">
+      <div id="logo" class="logo">
         <a href="./index.html" aria-label="Logo"
-          >galry <span class="logo__dot">.</span></a
+          id="logo">galry.</a
         >
       </div>
-      <div class="burger" aria-label="hamburger menu">
+      <div id="burger" class="burger" aria-label="hamburger menu">
         <div class="line1"></div>
         <div class="line2"></div>
       </div>
@@ -49,7 +49,7 @@
 
     <!-- NAV -->
 
-    <nav class="main__nav">
+    <nav class="main__nav container">
       <ul class="nav__links">
         <li class="nav__item">
           <a href="/" class="nav__link" aria-label="Go to youtube">Youtube</a>
@@ -76,7 +76,7 @@
 
     <!-- Main -->
 
-    <main class="main">
+    <main class="main container">
       <!-- Photographer -->
       <section class="hero slide">
         <div class="hero__img">
@@ -86,7 +86,7 @@
 
         <div class="hero__description">
           <div class="title">
-            <h1>Have a new <span class="hero__span">perspective.</span></h1>
+            <h1>Have a new <br> <span class="hero__span">perspective.</span></h1>
             <div class="title__swipe title__swipe--1"></div>
           </div>
           <p class="hero__text">
@@ -106,7 +106,7 @@
 
         <div class="hero__description">
           <div class="title">
-            <h1>Start to use <span class="paint__span">imagination.</span></h1>
+            <h1>Start to use <br> <span class="paint__span">imagination.</span></h1>
             <div class="title__swipe title__swipe--1"></div>
           </div>
           <p class="hero__text">
@@ -126,7 +126,7 @@
 
         <div class="hero__description">
           <div class="title">
-            <h1>Show your <span class="fashion__span">identity.</span></h1>
+            <h1>Show your <br> <span class="fashion__span">identity.</span></h1>
             <div class="title__swipe title__swipe--1"></div>
           </div>
           <p class="hero__text">
