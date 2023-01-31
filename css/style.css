@@ -10,6 +10,23 @@
   --text-color: rgb(233, 233, 233);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+
 a,
 a:visited,
 a:link {
@@ -26,6 +43,17 @@ body {
 body.hide {
   transition: overflow 2s;
   overflow: hidden;
+  position: relative;
+}
+main {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .container {
@@ -49,10 +77,19 @@ body.hide {
   z-index: 1001;
   display: flex;
   align-items: center;
+  background-color: var(--body-color);
   justify-content: space-between;
   color: white;
+  margin: 32 auto;
+  padding: 0 64px;
+}
+
+.burger {
+  font-size: 16px;
+
   margin: 0 auto;
   padding: 2rem 4rem;
+
 }
 
 .line1,
@@ -67,7 +104,7 @@ body.hide {
 .slide {
   height: 100vh;
   margin: 0 auto;
-  width: 80%;
+  padding: 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,13 +120,16 @@ body.hide {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   align-items: flex-start;
   flex: 1;
   flex-basis: 25rem;
   padding-left: 5rem;
   position: relative;
 }
+
+
+
+
 
 .hero__img {
   position: relative;
@@ -105,12 +145,15 @@ body.hide {
 }
 
 .hero__span {
+  display: block;
   color: var(--photo-color);
 }
 .paint__span {
+  display: block;
   color: var(--paint-color);
 }
 .fashion__span {
+  display: block;
   color: var(--fashion-color);
 }
 
@@ -118,6 +161,8 @@ body.hide {
   font-family: "Abril Fatface";
   font-size: 5rem;
 }
+
+
 
 .hero__description p {
   padding: 3rem 0;
@@ -162,8 +207,11 @@ body.hide {
   flex-direction: column;
   gap: 2rem;
   font-size: 3rem;
+  font-weight: 600;
   flex-basis: 30rem;
   list-style: none;
+  mix-blend-mode: hard-light;
+  position: relative;
 }
 
 .nav__link {
@@ -180,7 +228,8 @@ body.hide {
 
 .contact span {
   font-size: 3rem;
-  padding: 2rem 0;
+  font-weight: 600;
+  padding-bottom: 2rem;
 }
 
 .contact p {
@@ -224,6 +273,9 @@ body.hide {
 
 .scrollmagic-pin-spacer {
   position: static !important;
+  margin: 0 auto !important;
+  height: 100vh !important;
+
 }
 
 .active-cursor-nav {
@@ -264,8 +316,11 @@ body.hide {
 /* extra pages */
 
 .detail__img {
-  height: 70vh;
-  flex-basis: 30rem;
+
+  height: 60%;
+  flex-basis: 420px;
+  position: relative;
+
 }
 
 .detail__text {
@@ -294,12 +349,15 @@ body.hide {
 
 .detail__num {
   font-size: 15rem;
+  font-weight: 600;
   position: absolute;
-  left: 50%;
-  bottom: 10%;
+  left: -20%;
+  bottom: -20%;
   color: white;
-  opacity: .2;
-  mix-blend-mode: difference;
+  opacity: 0.4;
+  mix-blend-mode: hard-light;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+
 }
 
 
@@ -321,5 +379,41 @@ body.hide {
 .fashion h1 {
   color: var(--fashion-color);
 }
+
+
+
+.flash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.flash1 {
+  z-index: var(--z-index-flash1);
+  background: var(--first);
+}
+.flash2 {
+  z-index: var(--z-index-flash2);
+  background: var(--second);
+}
+.flash3 {
+  z-index: var(--z-index-flash3);
+  background: var(--third);
+}
+
+.footer {
+  padding: 4rem;
+  color: white;
+
+}
+
+.footer ul {
+  display: flex;
+
+}
+
 
 
