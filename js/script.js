@@ -2,10 +2,60 @@ const sliders = document.querySelectorAll(".slide");
 const nav = document.querySelector(".header");
 const mouse = document.querySelector(".cursor");
 const mouseText = document.querySelector(".cursor__text");
+const burger = document.querySelector(".burger");
 
-//scenes
+//////////////////////////////////////cursor movement
+const cursorMove = (e) => {
+  mouse.style.top = e.clientY + "px";
+  mouse.style.left = e.clientX + "px";
+};
+
+const activeCursor = (e) => {
+  const item = e.target;
+
+  if (item.id === "logo" || item.id === "burger") {
+    mouse.classList.add("active-cursor-nav");
+  } else {
+    mouse.classList.remove("active-cursor-nav");
+  }
+  if (item.classList.contains("explore")) {
+    mouse.classList.add("active-cursor-explore");
+    gsap.to(".title__swipe", 1, { y: "0%" });
+    mouseText.innerText = "Tap";
+  } else {
+    mouse.classList.remove("active-cursor-explore");
+    gsap.to(".title__swipe", 1, { y: "100%" });
+    mouseText.innerText = "";
+  }
+};
+
+/////////////////////////////////////navToggle
+
+const navToggle = (e) => {
+  if (!e.target.classList.contains("nav__active")) {
+    e.target.classList.add("nav__active");
+    gsap.to(".line1", 0.5, { rotate: "45", y: 5, background: "black" });
+    gsap.to(".line2", 0.5, { rotate: "-45", y: -5, background: "black" });
+    gsap.to(".logo", 1, { color: "black" });
+    gsap.to(".main__nav", 1, { clipPath: "circle(4000px at 100% -10%" });
+    document.body.classList.add("hide");
+  } else {
+    e.target.classList.remove("nav__active");
+    gsap.to(".line1", 0.5, { rotate: "0", y: 0, background: "white" });
+    gsap.to(".line2", 0.5, { rotate: "0", y: 0, background: "white" });
+    gsap.to(".logo", 1, { color: "white" });
+    gsap.to(".main__nav", 1, { clipPath: "circle(50px at 100% -10%" });
+    document.body.classList.remove("hide");
+  }
+};
+
+/////////////////////////////////////scenes
 let slideScene;
 let pageScene;
+
+gsap.config({
+  nullTargetWarn: false
+})
 
 // initiate
 const animateSlides = () => {
@@ -21,7 +71,7 @@ const animateSlides = () => {
     const revealText = slide.querySelector(".reveal__text");
 
     // lets use gsap on these elements (using timeline)
-
+    //slide setup
     const slideT1 = gsap.timeline({
       defaults: { duration: 1, ease: "power2.easeOut" },
     });
@@ -43,12 +93,15 @@ const animateSlides = () => {
       reverse: false,
     })
       .setTween(slideT1)
-      .addIndicators({ colorStart: "white", colorEnd: "white", name: "slide" })
+      .addIndicators({name: "slide", colorStart: "white", colorEnd: "white"})
       .addTo(controller);
 
-    //page animations
+    // page setup
     const pageT1 = gsap.timeline();
-    const nextSlide = slides.length - 1 === index ? null : slides[index + 1];
+    const nextSlide =
+      slides.length - 1 === index ? undefined : slides[index + 1];
+
+       //page animations
     pageT1.fromTo(nextSlide, { y: "0%" }, { y: "50%" });
     pageT1.fromTo(slide, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.5 });
     pageT1.fromTo(nextSlide, { y: "50%" }, { y: "0%" }, "-=0.5");
@@ -59,40 +112,12 @@ const animateSlides = () => {
     })
       .setTween(pageT1)
       .setPin(slide, { pushFollowers: false })
-      .addIndicators({
-        colorStart: "white",
-        colorEnd: "white",
-        name: "page",
-        indent: 200,
-      })
       .addTo(controller);
   });
 };
 
-const cursorMove = (e) => {
-  mouse.style.top = e.pageY + "px";
-  mouse.style.left = e.pageX + "px";
-};
-
-const activeCursor = (e) => {
-  const item = e.target;
-
-  if (item.id === "logo" || item.id === "burger") {
-    mouse.classList.add("active-cursor-nav");
-  } else {
-    mouse.classList.remove("active-cursor-nav");
-  }
-  if (item.classList.contains("explore")) {
-    mouse.classList.add("active-cursor-explore");
-    mouseText.innerText = "Tap";
-  } else {
-    mouse.classList.remove("active-cursor-explore");
-    mouseText.innerText = "";
-  }
-};
-
-// control position of cursor
+/////////////////////Event Listeners
 window.addEventListener("mousemove", cursorMove);
-// animate cursor
 window.addEventListener("mouseover", activeCursor);
+burger.addEventListener("click", navToggle);
 animateSlides();
